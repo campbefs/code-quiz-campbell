@@ -9,6 +9,8 @@ var questions = [
 
 var questionList = document.querySelector(".full-answer-list");
 var questionText = document.querySelector("#question");
+var statusDiv = document.querySelector(".status");
+
 
 questionCounter = 0;
 score = 0;
@@ -79,7 +81,6 @@ var reloadQuestion = function() {
   taskSelected2.textContent = questions[questionCounter].b;
   taskSelected3.textContent = questions[questionCounter].c;
   taskSelected4.textContent = questions[questionCounter].d;
-
 }
 
 
@@ -101,15 +102,22 @@ var itemButtonHandler = function(event) {
   if (answer.toString() === questions[questionCounter].answer.toString()) {
     console.log('correct');
     score++;
+    textAnswer = 'correct';
+  } else {
+    textAnswer = 'incorrect';
   }
+
+  // updating status
+  var statusUpdate = document.querySelector("#status-update");
+  statusUpdate.textContent = textAnswer;
+
 };
 
+// Checking which button was clicked & scoring
 answerClick1.addEventListener("click", itemButtonHandler);
 answerClick2.addEventListener("click", itemButtonHandler);
 answerClick3.addEventListener("click", itemButtonHandler);
 answerClick4.addEventListener("click", itemButtonHandler);
-
-
 
 // Reload the Question
 answerClick1.addEventListener('click', reloadQuestion);
