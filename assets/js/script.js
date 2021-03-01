@@ -1,18 +1,17 @@
 // Coding questions 
 var questions = [
-  { q: 'Is the sky blue?', a: '1. comma', b: '2. string', c: '3. boolean', d: '4. array', answer: '2. string'},
-  { q: 'Is the ocean green?', a: '1. yes', b: '2. no', c: '3. maybe', d: '4. so', answer: '3. maybe' },
-  { q: 'Is the ground brown?', a: '1. why', b: '2. not', c: '3. this', d: '4. works', answer: '4. works' },
+  { q: 'How do you convert to string?', a: '1. text.toString()', b: '2. string(text)', c: '3. str(text)', d: '4. cast(text as string)', answer: 1},
+  { q: 'What is a for loop?', a: '1. an infinite loop', b: '2. a loop with set iterations', c: '3. reloading the page', d: '4. loop back once', answer: 2},
+  { q: 'Which is not a data type?', a: '1. array', b: '2. string', c: '3. super int', d: '4. boolean', answer: 3},
+  { q: 'How do you see the value of a variable?', a: '1. print(var)', b: '2. var.valueOf()', c: '3. console.log(var)', d: '4. value(var)', answer: 2},
+  { q: 'Which element is not in a link?', a: '1. a', b: '2. href', c: '3. for', d: '4. alt', answer: 3},
 ];
 
 var questionList = document.querySelector(".full-answer-list");
 var questionText = document.querySelector("#question");
 
 questionCounter = 0;
-questionIdCounter1 = 0;
-questionIdCounter2 = 100;
-questionIdCounter3 = 200;
-questionIdCounter4 = 300;
+score = 0;
 
 
 var createQuestEl = function(question) {
@@ -61,30 +60,28 @@ var createQuestEl = function(question) {
 
 
 var reloadQuestion = function() {
-  console.log(questionCounter);
-  var questionSelected = document.querySelector(".question-text[data-question-id='" + 0 + "']");
+  //console.log(questionCounter);
   questionCounter++;
+
+  var questionSelected = document.querySelector(".question-text[data-question-id='" + 0 + "']");
   var taskSelected1 = document.querySelector(".list-answer[data-question-id='" + 1 + "']");
-  questionIdCounter1++;
+  // questionIdCounter1++;
   var taskSelected2 = document.querySelector(".list-answer[data-question-id='" + 2 + "']");
-  questionIdCounter2++;
+  // questionIdCounter2++;
   var taskSelected3 = document.querySelector(".list-answer[data-question-id='" + 3 + "']");
-  questionIdCounter3++;
+  // questionIdCounter3++;
   var taskSelected4 = document.querySelector(".list-answer[data-question-id='" + 4 + "']");
-  questionIdCounter4++;
+  // questionIdCounter4++;
 
-  questionSelected.remove();
-  taskSelected1.remove();
-  taskSelected2.remove();
-  taskSelected3.remove();
-  taskSelected4.remove();
-
-  // Reload the new question
-  createQuestEl(questions[questionCounter]);
-
-  // I am stuck on how to re-assign the variables using query selector af they are reloaded.
+  // Reload the question
+  questionSelected.textContent = questions[questionCounter].q;
+  taskSelected1.textContent = questions[questionCounter].a;
+  taskSelected2.textContent = questions[questionCounter].b;
+  taskSelected3.textContent = questions[questionCounter].c;
+  taskSelected4.textContent = questions[questionCounter].d;
 
 }
+
 
 // filling the first round of questions
 createQuestEl(questions[0]);
@@ -94,6 +91,24 @@ var answerClick1 = document.querySelector("#answer1");
 var answerClick2 = document.querySelector("#answer2");
 var answerClick3 = document.querySelector("#answer3");
 var answerClick4 = document.querySelector("#answer4");
+
+// Track where clicks occur
+var itemButtonHandler = function(event) {
+  console.log(event.target);
+  console.log(event.target.getAttribute('data-question-id'));
+  console.log(questions[questionCounter].answer);
+  answer = event.target.getAttribute('data-question-id');
+  if (answer.toString() === questions[questionCounter].answer.toString()) {
+    console.log('correct');
+    score++;
+  }
+};
+
+answerClick1.addEventListener("click", itemButtonHandler);
+answerClick2.addEventListener("click", itemButtonHandler);
+answerClick3.addEventListener("click", itemButtonHandler);
+answerClick4.addEventListener("click", itemButtonHandler);
+
 
 
 // Reload the Question
