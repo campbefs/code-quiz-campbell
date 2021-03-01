@@ -1,0 +1,98 @@
+body {
+  font-size: 24px;
+  font-family: 'Roboto', sans-serif;
+}
+
+header {
+  top:40px;
+}
+
+#high-score {
+  margin-top: 20px;
+  left: 30px;
+  position: absolute;
+  /* display: inline; */
+  color: purple;
+}
+
+#timer {
+  margin-top: 20px;
+  right: 30px;
+  position: absolute;
+  display: inline;
+}
+
+.main-text {
+  padding-top: 140px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 50px;
+  font-weight:bold;
+}
+
+
+.intro-text {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+/* Styling the Start Quiz Button Link */
+.button-class a {
+  background-color:rebeccapurple;
+  border: none;
+  color: white;
+  padding: 23px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 12px;
+  margin: 4px 2px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.task-item {
+  color: var(--grey);
+  padding: 15px 15px;
+  border: 2px solid var(--grey);
+  background: var(--tertiary);
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.question-text {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  margin-left: 30%;
+  padding-top: 140px;
+  /* text-align: center; */
+}
+
+.full-answer-list {
+  padding-left: 0;
+}
+
+.answers {
+  margin-left: 30%;
+  margin-right: 45%;
+}
+
+.list-answer {
+  padding-left:50px;
+  text-align: center;
+  background-color:rebeccapurple;
+  border: none;
+  color: white;
+  width: 400px;
+  padding: 15px 25px;
+  text-decoration: none;
+  display: block;
+  border-radius: 12px;
+  margin: 4px 2px;
+  font-size: 18px;
+  font-weight: bold;
+}
