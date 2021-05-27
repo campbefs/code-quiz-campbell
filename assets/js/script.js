@@ -90,7 +90,6 @@ var createQuestEl = function(question) {
 
 var reloadQuestion = function() {
   questionCounter++;
-  console.log(questionCounter);
 
   // Ending Loop
   if (parseInt($timerSec.textContent) === 0 || questionCounter === questions.length-1) {
