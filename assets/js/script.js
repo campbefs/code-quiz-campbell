@@ -6,7 +6,7 @@ var questions = [
   { q: 'How do you return the value of a variable?', a: '1. print(var)', b: '2. var.valueOf()', c: '3. console.log(var)', d: '4. value(var)', answer: 2},
   { q: 'How do you turn a string to an integer?', a: '1. int(var)', b: '2. var.intOf()', c: '3.var.Int', d: '4. parseInt(var)', answer: 4},
   { q: 'How do you sort an array?', a: '1. arr.sort()', b: '2. sort(arr)', c: '3. build a custom sort function', d: '4. orderBy(arr)', answer: 1},
-  { q: 'What is the proper syntax for a "for" loop?', a: '1. for (i<5;i===0;i++) {}', b: '2. for i in arr.length {}', c: '3. for (i=0;i<5;i++ {}', d: '4. None of the above', answer: 3},
+  { q: 'What is the proper syntax for a "for" loop?', a: '1. for (i<5;i===0;i++) {}', b: '2. for i in arr.length {}', c: '3. for (i=0;i<5;i++) {}', d: '4. None of the above', answer: 3},
   { q: 'JavaScript is a ____-side programming language?', a: '1. Server', b: '2. Client', c: '3. None', d: '4. Both', answer: 4},
   { q: 'How do you send an alert to a user?', a: '1. alertBox("hey now!")', b: '2. alert("hey now!)', c: '3. msgAlert("Hey now!")', d: '4. prompt("Hey now!")', answer: 2},
   { q: 'Which element is not in a link?', a: '1. a', b: '2. href', c: '3. for', d: '4. alt', answer: 3},
