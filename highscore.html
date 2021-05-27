@@ -10,21 +10,29 @@
 
 <body>
   <header>
-    <div id="high-score">View high scores</div>
+    <a id="high-score" href="./highscore.html">View high scores</a>
     <div id="timer">Time: <span id="timer-sec">60</span></div>
   </header>
 
-  <div class="main-text">
-    <h1>
-      Coding Quiz Challenge - High Scores
-    </h1>
-    <div class="intro-text">
-      <p>High Scores Go Here!</p>
-    </div>
-    <div class="button-class">
-      <!-- <button id="btn">Start Quiz</button> -->
-      <a id="start-quiz" href="./quiz.html">Try Again!</a>
+
+    <div class="initials-box">
+      <h1>
+        All done!
+      </h1>
+      <div class="final-score-text">
+        <p>Your final score is <span id="final-score"></span>.</p>
+      </div>
+
+      <form class="initials">
+        <label id="init-label" for="initials-text">Enter initials:</label>
+        <input type="text" id="initials-text" name="initials-text">
+        <input id="submit-button" type="submit" value="Submit">
+      </form>
     </div>
 
+
+
+
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>

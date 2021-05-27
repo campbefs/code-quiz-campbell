@@ -5,6 +5,7 @@ var questions = [
   { q: 'Which is not a data type?', a: '1. array', b: '2. string', c: '3. super int', d: '4. boolean', answer: 3},
   { q: 'How do you see the value of a variable?', a: '1. print(var)', b: '2. var.valueOf()', c: '3. console.log(var)', d: '4. value(var)', answer: 2},
   { q: 'Which element is not in a link?', a: '1. a', b: '2. href', c: '3. for', d: '4. alt', answer: 3},
+  { q: 'Which element is not in a link?', a: '1. a', b: '2. href', c: '3. for', d: '4. alt', answer: 3}, // dupe to prevent throwing error
 ];
 
 var questionList = document.querySelector(".full-answer-list");
@@ -21,14 +22,16 @@ var timerFunc = () => {
     $timerSec.textContent--;
 
     // Ending Loop
-    if (parseInt($timerSec.textContent) === -1) {
-      clearInterval(startTimer);
+    if (parseInt($timerSec.textContent) === 0 || questionCounter === questions.length-1) {
       document.location.replace("./highscore.html");
 
       // log score in Local Storage
-      localStorage.setItem("currentHighScore", score);
+      localStorage.setItem("currentHighScore", [score, $timerSec.textContent]);
+      clearInterval(startTimer);
 
     }
+
+
   }
   const startTimer = setInterval(timerLog, 1000);
   startTimer;
@@ -153,6 +156,64 @@ if (url === "quiz.html") {
   answerClick4.addEventListener("click", reloadQuestion);
 
 }
+
+
+// High Score Page
+const highScoresPage = (event) => {
+  event.preventDefault();
+
+  $initialsBox = document.querySelector(".initials-box");
+  $initialData = document.querySelector("#initials-text").value.trim();
+
+  console.log($initialData);
+
+  // validation here
+
+
+  // null out current localstorage here
+
+
+  $initialsBox.classList.add("none");
+
+
+
+// display = none for initial page
+// capture form data
+
+// Reset currentLocalStorage to 0
+// validation, if local storage was already removed error
+// if initials length > 3 then error
+
+// append to an array of arrays with initials & score
+
+// remove display = none class from next block
+
+}
+
+
+
+
+// Enter Initials Page
+if (url === "highscore.html") {
+
+  // if navigating directly to highscore then check local storage, if null go to high score page
+  // do this last
+
+  let $initialsForm = document.querySelector(".initials");
+  let $finalScore = document.querySelector("#final-score");
+  let $timerSec = document.querySelector("#timer-sec");
+
+  finalScore = localStorage.getItem("currentHighScore").split(",")[0];
+  timeLeft = localStorage.getItem("currentHighScore").split(",")[1];
+
+  $finalScore.textContent = finalScore;
+  $timerSec.textContent = timeLeft;
+
+  document.querySelector('.initials').addEventListener('submit', highScoresPage);
+
+}
+
+
 
 
 

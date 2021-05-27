@@ -123,3 +123,40 @@ h1 {
   font-style: italic;
   color: gray;
 }
+
+.initials-box {
+  padding-top: 140px;
+  text-align: left;
+  padding-left: 35%;
+}
+
+#initials-text {
+  height: 22px;
+  width: 330px;
+}
+
+#init-label {
+  padding: 0px;
+}
+
+/* Styling the Start Quiz Button Link */
+#submit-button {
+  background-color:rebeccapurple;
+  border: none;
+  color: white;
+  padding: 3px 8px 3px 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 4px;
+  margin: 4px 2px;
+  font-size: 22px;
+}
+
+#submit-button:hover {
+  background-color: rgb(144, 72, 216);
+}
+
+.none {
+  display: none;
+}
