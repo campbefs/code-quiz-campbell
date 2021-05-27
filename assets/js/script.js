@@ -5,15 +5,10 @@ var questions = [
   { q: 'Which is not a data type?', a: '1. array', b: '2. string', c: '3. super int', d: '4. boolean', answer: 3},
   { q: 'How do you see the value of a variable?', a: '1. print(var)', b: '2. var.valueOf()', c: '3. console.log(var)', d: '4. value(var)', answer: 2},
   { q: 'How do you turn a string to an integer?', a: '1. int(var)', b: '2. var.intOf()', c: '3.var.Int', d: '4. parseInt(var)', answer: 4},
-
   { q: 'How do you sort an array?', a: '1. arr.sort()', b: '2. sort(arr)', c: '3. build a custom sort function', d: '4. orderBy(arr)', answer: 1},
-
   { q: 'What is the proper syntax for a "for" loop?', a: '1. for (i<5;i===0;i++) {}', b: '2. for i in arr.length {}', c: '3. for (i=0;i<5;i++ {}', d: '4. None of the above', answer: 3},
-
   { q: 'JavaScript is a ____-side programming language?', a: '1. Server', b: '2. Client', c: '3. None', d: '4. Both', answer: 4},
-
   { q: 'How do you send an alert to a user?', a: '1. alertBox("hey now!")', b: '2. alert("hey now!)', c: '3. msgAlert("Hey now!")', d: '4. prompt("Hey now!")', answer: 1},
-
   { q: 'Which element is not in a link?', a: '1. a', b: '2. href', c: '3. for', d: '4. alt', answer: 3},
   { q: 'Which element is not in a link?', a: '1. a', b: '2. href', c: '3. for', d: '4. alt', answer: 3}, // dupe to prevent throwing error
 
@@ -94,8 +89,16 @@ var createQuestEl = function(question) {
 
 
 var reloadQuestion = function() {
-  //console.log(questionCounter);
   questionCounter++;
+  console.log(questionCounter);
+
+  // Ending Loop
+  if (parseInt($timerSec.textContent) === 0 || questionCounter === questions.length-1) {
+    document.location.replace("./initials.html");
+
+    // log score in Local Storage
+    localStorage.setItem("currentHighScore", [score, $timerSec.textContent]);
+  }
 
   var questionSelected = document.querySelector(".question-text[data-question-id='" + 0 + "']");
   var taskSelected1 = document.querySelector(".list-answer[data-question-id='" + 1 + "']");
@@ -118,12 +121,9 @@ var reloadQuestion = function() {
 
 // Track where clicks occur
 var itemButtonHandler = function(event) {
-  // console.log(event.target);
-  // console.log(event.target.getAttribute('data-question-id'));
-  // console.log(questions[questionCounter].answer);
+
   answer = event.target.getAttribute('data-question-id');
   if (answer.toString() === questions[questionCounter].answer.toString()) {
-    // console.log('correct');
     score++;
     textAnswer = 'Correct!';
   } else {
@@ -196,9 +196,6 @@ if (url === "initials.html") {
       $initialsBox = document.querySelector(".initials-box");
       let initials = document.querySelector("#initials-text").value.trim();
 
-      console.log('initials', initials.length);
-
-      console.log(parseInt(initials));
       // initials validation
       if (initials.length === 0 || initials.length > 3 || parseInt(initials)) {
         window.alert("Please enter initials (1-3 characters)!");
@@ -210,12 +207,10 @@ if (url === "initials.html") {
 
         // get array
         let lsHighScores = localStorage.getItem("campHighScores");
-        console.log('campHighScores from LS', String(lsHighScores));
         
         if (String(lsHighScores) !== "null") {
           let lsHighScoresArr = lsHighScores.split(",");
           newHighScores = newHighScores.concat(lsHighScoresArr);
-          console.log('newHighScores after concat', newHighScores);
         }
 
         // append current score to array
