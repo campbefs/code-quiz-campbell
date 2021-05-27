@@ -3,7 +3,7 @@ var questions = [
   { q: 'How do you convert to string?', a: '1. text.toString()', b: '2. string(text)', c: '3. str(text)', d: '4. cast(text as string)', answer: 1},
   { q: 'What is a for loop?', a: '1. an infinite loop', b: '2. a loop with set iterations', c: '3. reloading the page', d: '4. loop back once', answer: 2},
   { q: 'Which is not a data type?', a: '1. array', b: '2. string', c: '3. super int', d: '4. boolean', answer: 3},
-  { q: 'How do you see the value of a variable?', a: '1. print(var)', b: '2. var.valueOf()', c: '3. console.log(var)', d: '4. value(var)', answer: 2},
+  { q: 'How do you return the value of a variable?', a: '1. print(var)', b: '2. var.valueOf()', c: '3. console.log(var)', d: '4. value(var)', answer: 2},
   { q: 'How do you turn a string to an integer?', a: '1. int(var)', b: '2. var.intOf()', c: '3.var.Int', d: '4. parseInt(var)', answer: 4},
   { q: 'How do you sort an array?', a: '1. arr.sort()', b: '2. sort(arr)', c: '3. build a custom sort function', d: '4. orderBy(arr)', answer: 1},
   { q: 'What is the proper syntax for a "for" loop?', a: '1. for (i<5;i===0;i++) {}', b: '2. for i in arr.length {}', c: '3. for (i=0;i<5;i++ {}', d: '4. None of the above', answer: 3},
