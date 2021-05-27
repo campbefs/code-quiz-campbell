@@ -8,7 +8,7 @@ var questions = [
   { q: 'How do you sort an array?', a: '1. arr.sort()', b: '2. sort(arr)', c: '3. build a custom sort function', d: '4. orderBy(arr)', answer: 1},
   { q: 'What is the proper syntax for a "for" loop?', a: '1. for (i<5;i===0;i++) {}', b: '2. for i in arr.length {}', c: '3. for (i=0;i<5;i++ {}', d: '4. None of the above', answer: 3},
   { q: 'JavaScript is a ____-side programming language?', a: '1. Server', b: '2. Client', c: '3. None', d: '4. Both', answer: 4},
-  { q: 'How do you send an alert to a user?', a: '1. alertBox("hey now!")', b: '2. alert("hey now!)', c: '3. msgAlert("Hey now!")', d: '4. prompt("Hey now!")', answer: 1},
+  { q: 'How do you send an alert to a user?', a: '1. alertBox("hey now!")', b: '2. alert("hey now!)', c: '3. msgAlert("Hey now!")', d: '4. prompt("Hey now!")', answer: 2},
   { q: 'Which element is not in a link?', a: '1. a', b: '2. href', c: '3. for', d: '4. alt', answer: 3},
   { q: 'Which element is not in a link?', a: '1. a', b: '2. href', c: '3. for', d: '4. alt', answer: 3}, // dupe to prevent throwing error
 
@@ -91,14 +91,6 @@ var createQuestEl = function(question) {
 var reloadQuestion = function() {
   questionCounter++;
 
-  // Ending Loop
-  if (parseInt($timerSec.textContent) === 0 || questionCounter === questions.length-1) {
-    document.location.replace("./initials.html");
-
-    // log score in Local Storage
-    localStorage.setItem("currentHighScore", [score, $timerSec.textContent]);
-  }
-
   var questionSelected = document.querySelector(".question-text[data-question-id='" + 0 + "']");
   var taskSelected1 = document.querySelector(".list-answer[data-question-id='" + 1 + "']");
   // questionIdCounter1++;
@@ -132,6 +124,14 @@ var itemButtonHandler = function(event) {
   // updating status
   var statusUpdate = document.querySelector("#status-update");
   statusUpdate.textContent = textAnswer;
+
+  // Ending Loop
+  if (parseInt($timerSec.textContent) === 0 || questionCounter === questions.length-1) {
+    document.location.replace("./initials.html");
+
+    // log score in Local Storage
+    localStorage.setItem("currentHighScore", [score, $timerSec.textContent]);
+  }
 
 };
 
