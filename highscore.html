@@ -9,29 +9,22 @@
 </head>
 
 <body>
-  <header>
-    <a id="high-score" href="./highscore.html">View high scores</a>
-    <div id="timer">Time: <span id="timer-sec">60</span></div>
-  </header>
 
-
-    <div class="initials-box">
+    <div class="center-box">
       <h1>
-        All done!
+        High Scores
       </h1>
-      <div class="final-score-text">
-        <p>Your final score is <span id="final-score"></span>.</p>
+
+      <ol id="hs-list">
+        <!-- <li>CMC - 3</li>
+        <li>cc -2</li> -->
+      </ol>
+
+      <div class="buttons">
+        <a href="./index.html" class="submit-button">Go Back</a>
+        <button id="clear-scores" class="submit-button">Clear high Scores</button>
       </div>
-
-      <form class="initials">
-        <label id="init-label" for="initials-text">Enter initials:</label>
-        <input type="text" id="initials-text" name="initials-text">
-        <input id="submit-button" type="submit" value="Submit">
-      </form>
     </div>
-
-
-
 
     <script src="./assets/js/script.js"></script>
 </body>

@@ -4,8 +4,19 @@ var questions = [
   { q: 'What is a for loop?', a: '1. an infinite loop', b: '2. a loop with set iterations', c: '3. reloading the page', d: '4. loop back once', answer: 2},
   { q: 'Which is not a data type?', a: '1. array', b: '2. string', c: '3. super int', d: '4. boolean', answer: 3},
   { q: 'How do you see the value of a variable?', a: '1. print(var)', b: '2. var.valueOf()', c: '3. console.log(var)', d: '4. value(var)', answer: 2},
+  { q: 'How do you turn a string to an integer?', a: '1. int(var)', b: '2. var.intOf()', c: '3.var.Int', d: '4. parseInt(var)', answer: 4},
+
+  { q: 'How do you sort an array?', a: '1. arr.sort()', b: '2. sort(arr)', c: '3. build a custom sort function', d: '4. orderBy(arr)', answer: 1},
+
+  { q: 'What is the proper syntax for a "for" loop?', a: '1. for (i<5;i===0;i++) {}', b: '2. for i in arr.length {}', c: '3. for (i=0;i<5;i++ {}', d: '4. None of the above', answer: 3},
+
+  { q: 'JavaScript is a ____-side programming language?', a: '1. Server', b: '2. Client', c: '3. None', d: '4. Both', answer: 4},
+
+  { q: 'How do you send an alert to a user?', a: '1. alertBox("hey now!")', b: '2. alert("hey now!)', c: '3. msgAlert("Hey now!")', d: '4. prompt("Hey now!")', answer: 1},
+
   { q: 'Which element is not in a link?', a: '1. a', b: '2. href', c: '3. for', d: '4. alt', answer: 3},
   { q: 'Which element is not in a link?', a: '1. a', b: '2. href', c: '3. for', d: '4. alt', answer: 3}, // dupe to prevent throwing error
+
 ];
 
 var questionList = document.querySelector(".full-answer-list");
@@ -23,12 +34,11 @@ var timerFunc = () => {
 
     // Ending Loop
     if (parseInt($timerSec.textContent) === 0 || questionCounter === questions.length-1) {
-      document.location.replace("./highscore.html");
+      document.location.replace("./initials.html");
 
       // log score in Local Storage
       localStorage.setItem("currentHighScore", [score, $timerSec.textContent]);
       clearInterval(startTimer);
-
     }
 
 
@@ -131,6 +141,8 @@ var itemButtonHandler = function(event) {
 let url = document.location.pathname.split("/")[document.location.pathname.split("/").length-1];
 if (url === "quiz.html") {
 
+  questionCounter = 0;
+
   // create the questions
   createQuestEl(questions[0]);
 
@@ -158,66 +170,103 @@ if (url === "quiz.html") {
 }
 
 
-// High Score Page
-const highScoresPage = (event) => {
-  event.preventDefault();
-
-  $initialsBox = document.querySelector(".initials-box");
-  $initialData = document.querySelector("#initials-text").value.trim();
-
-  console.log($initialData);
-
-  // validation here
-
-
-  // null out current localstorage here
-
-
-  $initialsBox.classList.add("none");
-
-
-
-// display = none for initial page
-// capture form data
-
-// Reset currentLocalStorage to 0
-// validation, if local storage was already removed error
-// if initials length > 3 then error
-
-// append to an array of arrays with initials & score
-
-// remove display = none class from next block
-
-}
-
-
-
-
 // Enter Initials Page
-if (url === "highscore.html") {
+if (url === "initials.html") {
 
-  // if navigating directly to highscore then check local storage, if null go to high score page
   // do this last
 
   let $initialsForm = document.querySelector(".initials");
   let $finalScore = document.querySelector("#final-score");
   let $timerSec = document.querySelector("#timer-sec");
 
-  finalScore = localStorage.getItem("currentHighScore").split(",")[0];
-  timeLeft = localStorage.getItem("currentHighScore").split(",")[1];
+  ls = localStorage.getItem("currentHighScore");
 
-  $finalScore.textContent = finalScore;
-  $timerSec.textContent = timeLeft;
+  if (String(ls) !== "null") {
+    finalScore = localStorage.getItem("currentHighScore").split(",")[0];
+    timeLeft = localStorage.getItem("currentHighScore").split(",")[1];
 
-  document.querySelector('.initials').addEventListener('submit', highScoresPage);
+    $finalScore.textContent = finalScore;
+    $timerSec.textContent = timeLeft;
 
+
+    const submitInitials = (event) => {
+      event.preventDefault();
+      
+      // grab initial data
+      $initialsBox = document.querySelector(".initials-box");
+      let initials = document.querySelector("#initials-text").value.trim();
+
+      console.log('initials', initials.length);
+
+      console.log(parseInt(initials));
+      // initials validation
+      if (initials.length === 0 || initials.length > 3 || parseInt(initials)) {
+        window.alert("Please enter initials (1-3 characters)!");
+      } else {
+
+        // qualitycheck to make sure initials exist & are a certain length and are string
+
+        let newHighScores = [];
+
+        // get array
+        let lsHighScores = localStorage.getItem("campHighScores");
+        console.log('campHighScores from LS', String(lsHighScores));
+        
+        if (String(lsHighScores) !== "null") {
+          let lsHighScoresArr = lsHighScores.split(",");
+          newHighScores = newHighScores.concat(lsHighScoresArr);
+          console.log('newHighScores after concat', newHighScores);
+        }
+
+        // append current score to array
+        newHighScores.push(`${finalScore} / ${initials} - ${finalScore}`)
+        
+        // overwrite
+        localStorage.setItem("campHighScores", newHighScores);
+
+        localStorage.removeItem("currentHighScore");
+        document.location.replace("./highscore.html");
+      };
+    };
+
+    document.querySelector('.initials').addEventListener('submit', submitInitials);
+
+  } else {
+    document.location.replace("./index.html");
+  }
 }
 
 
+if (url === "highscore.html") {
+  const hsList = document.querySelector("#hs-list");
 
+  // read local storage
+  let hsString = localStorage.getItem("campHighScores");
 
+  if (String(hsString) !== "null") {
+    // create & sort array
+    let hsArr = hsString.split(',');
+    hsArr.sort();
+    hsArr.reverse();
 
+    // loop - add li to hs-list -- for each array item grab the second half
+    for (i=0; i<hsArr.length; i++) {
+      let listEl = document.createElement("li");
+      listEl.textContent = hsArr[i].split('/')[1];
+      hsList.appendChild(listEl);
+    }
+  };
 
+  // clear scores function
+  const clearScores = () => {
+    localStorage.clear();
+    location.reload();
+  }
+
+  // clear scores button
+  document.querySelector("#clear-scores").addEventListener("click", clearScores);
+
+}
 
 
 

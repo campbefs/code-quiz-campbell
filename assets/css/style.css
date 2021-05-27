@@ -124,7 +124,7 @@ h1 {
   color: gray;
 }
 
-.initials-box {
+.center-box {
   padding-top: 140px;
   text-align: left;
   padding-left: 35%;
@@ -139,8 +139,7 @@ h1 {
   padding: 0px;
 }
 
-/* Styling the Start Quiz Button Link */
-#submit-button {
+.submit-button {
   background-color:rebeccapurple;
   border: none;
   color: white;
@@ -153,10 +152,23 @@ h1 {
   font-size: 22px;
 }
 
-#submit-button:hover {
+.submit-button:hover {
   background-color: rgb(144, 72, 216);
 }
 
-.none {
-  display: none;
+#hs-list {
+  padding-left: 10px;
+}
+
+#hs-list li {
+  background-color: rgb(219, 183, 255);
+  margin-bottom: 10px;
+  border-radius: 3px;
+  width: 40%;
+  padding: 10px 10px 5px 10px;
+  list-style-position: inside;
+}
+
+#hs-list li {
+  margin-bottom: 5px;
 }
