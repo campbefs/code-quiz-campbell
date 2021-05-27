@@ -10,11 +10,29 @@ var questions = [
 var questionList = document.querySelector(".full-answer-list");
 var questionText = document.querySelector("#question");
 var statusDiv = document.querySelector(".status");
+var $timerSec = document.querySelector("#timer-sec");
 
+let questionCounter = 0;
+let score = 0;
 
-questionCounter = 0;
-score = 0;
+// Function to countdown the time
+var timerFunc = () => {
+  var timerLog = () => {
+    $timerSec.textContent--;
 
+    // Ending Loop
+    if (parseInt($timerSec.textContent) === -1) {
+      clearInterval(startTimer);
+      document.location.replace("./highscore.html");
+
+      // log score in Local Storage
+      localStorage.setItem("currentHighScore", score);
+
+    }
+  }
+  const startTimer = setInterval(timerLog, 1000);
+  startTimer;
+}
 
 var createQuestEl = function(question) {
   // Question
@@ -61,6 +79,7 @@ var createQuestEl = function(question) {
 }
 
 
+
 var reloadQuestion = function() {
   //console.log(questionCounter);
   questionCounter++;
@@ -84,27 +103,18 @@ var reloadQuestion = function() {
 }
 
 
-// filling the first round of questions
-createQuestEl(questions[0]);
-
-// // assign variables
-var answerClick1 = document.querySelector("#answer1");
-var answerClick2 = document.querySelector("#answer2");
-var answerClick3 = document.querySelector("#answer3");
-var answerClick4 = document.querySelector("#answer4");
-
 // Track where clicks occur
 var itemButtonHandler = function(event) {
-  console.log(event.target);
-  console.log(event.target.getAttribute('data-question-id'));
-  console.log(questions[questionCounter].answer);
+  // console.log(event.target);
+  // console.log(event.target.getAttribute('data-question-id'));
+  // console.log(questions[questionCounter].answer);
   answer = event.target.getAttribute('data-question-id');
   if (answer.toString() === questions[questionCounter].answer.toString()) {
-    console.log('correct');
+    // console.log('correct');
     score++;
-    textAnswer = 'correct';
+    textAnswer = 'Correct!';
   } else {
-    textAnswer = 'incorrect';
+    textAnswer = 'Wrong!';
   }
 
   // updating status
@@ -113,17 +123,39 @@ var itemButtonHandler = function(event) {
 
 };
 
-// Checking which button was clicked & scoring
-answerClick1.addEventListener("click", itemButtonHandler);
-answerClick2.addEventListener("click", itemButtonHandler);
-answerClick3.addEventListener("click", itemButtonHandler);
-answerClick4.addEventListener("click", itemButtonHandler);
 
-// Reload the Question
-answerClick1.addEventListener('click', reloadQuestion);
-answerClick2.addEventListener("click", reloadQuestion);
-answerClick3.addEventListener("click", reloadQuestion);
-answerClick4.addEventListener("click", reloadQuestion);
+// Render Quiz Elements
+let url = document.location.pathname.split("/")[document.location.pathname.split("/").length-1];
+if (url === "quiz.html") {
+
+  // create the questions
+  createQuestEl(questions[0]);
+
+  // // assign variables
+  var answerClick1 = document.querySelector("#answer1");
+  var answerClick2 = document.querySelector("#answer2");
+  var answerClick3 = document.querySelector("#answer3");
+  var answerClick4 = document.querySelector("#answer4");
+
+  // start timer
+  timerFunc();
+
+  // Checking which button was clicked & scoring
+  answerClick1.addEventListener("click", itemButtonHandler);
+  answerClick2.addEventListener("click", itemButtonHandler);
+  answerClick3.addEventListener("click", itemButtonHandler);
+  answerClick4.addEventListener("click", itemButtonHandler);
+
+  // Reload the Question
+  answerClick1.addEventListener('click', reloadQuestion);
+  answerClick2.addEventListener("click", reloadQuestion);
+  answerClick3.addEventListener("click", reloadQuestion);
+  answerClick4.addEventListener("click", reloadQuestion);
+
+}
+
+
+
 
 
 

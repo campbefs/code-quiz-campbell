@@ -13,6 +13,11 @@ header {
   position: absolute;
   /* display: inline; */
   color: purple;
+  text-decoration: none;
+}
+
+#high-score:hover {
+  color: rgb(192, 0, 192);
 }
 
 #timer {
@@ -54,6 +59,10 @@ h1 {
   font-weight: bold;
 }
 
+#start-quiz:hover {
+  background-color: rgb(144, 73, 214);
+}
+
 .task-item {
   color: var(--grey);
   padding: 15px 15px;
@@ -79,12 +88,14 @@ h1 {
 .answers {
   margin-left: 30%;
   margin-right: 45%;
+  width: 45%;
+  margin-right: auto;
 }
 
 .list-answer {
   padding-left:50px;
   text-align: center;
-  background-color:rebeccapurple;
+  background-color:rgb(86, 42, 129);
   border: none;
   color: white;
   width: 400px;
@@ -95,4 +106,20 @@ h1 {
   margin: 4px 2px;
   font-size: 18px;
   font-weight: bold;
+}
+
+.list-answer:hover {
+  background-color: rgb(141, 72, 211);
+}
+
+.status {
+  margin-top: 30px;
+  border-top: gray;
+  border-style: solid none none none;
+  border-width: 2px;
+}
+
+#status-update {
+  font-style: italic;
+  color: gray;
 }
