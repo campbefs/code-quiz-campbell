@@ -243,8 +243,7 @@ if (url === "highscore.html") {
   if (String(hsString) !== "null") {
     // create & sort array
     let hsArr = hsString.split(',');
-    hsArr.sort();
-    hsArr.reverse();
+    hsArr.sort(function(a,b){return parseInt(b)-parseInt(a)});
 
     // loop - add li to hs-list -- for each array item grab the second half
     for (i=0; i<hsArr.length; i++) {
