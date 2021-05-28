@@ -116,11 +116,11 @@ var itemButtonHandler = function(event) {
   answer = event.target.getAttribute('data-question-id');
   if (answer.toString() === questions[questionCounter].answer.toString()) {
     score +=10;
-    console.log(score);
     textAnswer = 'Correct!';
   } else {
     textAnswer = 'Wrong!';
     $timerSec.textContent -= 10;
+    $timerSec.textContent = Math.max($timerSec.textContent, 0);
   }
 
   // updating status
