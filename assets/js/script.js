@@ -27,7 +27,8 @@ var timerFunc = () => {
     $timerSec.textContent--;
 
     // Ending Loop
-    if (parseInt($timerSec.textContent) === 0 || questionCounter === questions.length-1) {
+    if (parseInt($timerSec.textContent) <= 0 || questionCounter === questions.length-1) {
+      score += parseInt($timerSec.textContent);
       document.location.replace("./initials.html");
 
       // log score in Local Storage
@@ -114,10 +115,12 @@ var itemButtonHandler = function(event) {
 
   answer = event.target.getAttribute('data-question-id');
   if (answer.toString() === questions[questionCounter].answer.toString()) {
-    score++;
+    score +=10;
+    console.log(score);
     textAnswer = 'Correct!';
   } else {
     textAnswer = 'Wrong!';
+    $timerSec.textContent -= 10;
   }
 
   // updating status
@@ -126,6 +129,7 @@ var itemButtonHandler = function(event) {
 
   // Ending Loop
   if (parseInt($timerSec.textContent) === 0 || questionCounter === questions.length-1) {
+    score += parseInt($timerSec.textContent);
     document.location.replace("./initials.html");
 
     // log score in Local Storage
